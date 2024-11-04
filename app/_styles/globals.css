@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:-webkit-autofill {
+  background-color: theme(
+    "colors.primary.200"
+  ) !important; /* Change to your desired bg color */
+  -webkit-box-shadow: 0 0 0 30px theme("colors.primary.200") inset !important; /* Prevent Chrome from overriding */
+  -webkit-text-fill-color: #333 !important; /* Set text color to be visible */
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px theme("colors.primary.200") inset !important;
+}
+
+@layer components {
+  .spinner {
+    margin: 3.2rem auto 1.6rem;
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid theme("colors.primary.900");
+    border-right-color: theme("colors.primary.200");
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid theme("colors.primary.200");
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
+
+/* For date picker */
+.rdp-root {
+  /* --rdp-cell-size: 32px !important; */
+  /* --rdp-day-height: 32px !important;
+  --rdp-day-width: 48px !important; */
+  --rdp-accent-color: theme("colors.accent.500") !important;
+  --rdp-accent-background-color: theme("colors.accent.600") !important;
+  margin-bottom: 45px !important;
+}
