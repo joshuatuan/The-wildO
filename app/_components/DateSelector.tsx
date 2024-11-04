@@ -81,7 +81,7 @@ function DateSelector({ cabin, settings, bookedDates }: DateSelectorProps) {
         hideNavigation={false}
       />
 
-      <div className="flex h-[72px] items-center justify-between bg-accent-500 px-4 text-primary-800 md:px-8">
+      <div className="flex h-[72px] items-center justify-between bg-accent-500 px-4 text-primary-800 md:rounded-b-md md:rounded-br-none md:px-8">
         <div className="flex items-baseline gap-2 md:gap-6">
           <div className="flex flex-col items-baseline">
             {discount > 0 ? (
@@ -106,7 +106,7 @@ function DateSelector({ cabin, settings, bookedDates }: DateSelectorProps) {
           </div>
           {numNights ? (
             <>
-              <p className="text-2xl md:bg-accent-600 md:px-3 md:py-2">
+              <p className="rounded-md text-2xl md:bg-accent-600 md:px-3 md:py-2">
                 <span>&times;</span> <span>{numNights}</span>
               </p>
               <p className="hidden md:block">
@@ -119,7 +119,7 @@ function DateSelector({ cabin, settings, bookedDates }: DateSelectorProps) {
 
         {range?.from || range?.to ? (
           <button
-            className="border border-primary-800 px-4 py-2 text-sm font-semibold"
+            className="rounded-md border border-primary-800 px-4 py-2 text-sm font-semibold transition-all duration-200 hover:bg-accent-600"
             onClick={resetRange}
           >
             Clear

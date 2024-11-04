@@ -27,10 +27,10 @@ export default async function Page({ params }: Params) {
   const cabin = await getCabin(cabinId);
 
   return (
-    <div className="mt-2 md:mx-auto md:mt-8 md:max-w-6xl">
+    <div className="md:mx-auto md:mt-8 md:max-w-6xl">
       <Cabin cabin={cabin} />
       <div>
-        <h2 className="mb-10 text-center text-4xl font-semibold text-accent-500 md:text-5xl">
+        <h2 className="mb-8 text-center text-4xl font-semibold text-accent-500 md:mb-10 md:text-5xl">
           Reserve today. Pay on arrival.
         </h2>
         <Suspense fallback={<Spinner />}>

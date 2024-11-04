@@ -39,14 +39,12 @@ function ReservationForm({ cabin, user, guest }: ReservationFormProp) {
     cabinId: id,
   };
 
-  console.log("BOOKING DATA: ", bookingData);
-
   // this will bind the booking data as the first argument of the createBooking fn
   const createBookingWithData = createBooking.bind(null, bookingData);
 
   return (
-    <div className="grid scale-[1.00]">
-      <div className="flex items-center justify-between bg-primary-800 px-8 py-4 text-primary-300 md:px-16 md:py-2">
+    <div className="grid">
+      <div className="flex items-center justify-between bg-primary-800 px-8 py-4 text-primary-300 md:rounded-r-md md:rounded-br-none md:px-16 md:py-2">
         <p>Logged in as</p>
         <div className="flex items-center gap-2">
           {user!.image ? (
@@ -72,7 +70,7 @@ function ReservationForm({ cabin, user, guest }: ReservationFormProp) {
           createBookingWithData(formData);
           resetRange();
         }}
-        className="flex flex-col gap-5 bg-primary-900 px-8 py-10 text-lg md:px-16"
+        className="flex flex-col gap-5 bg-primary-900 px-8 py-10 text-lg md:rounded-b-md md:px-16"
       >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
@@ -100,7 +98,7 @@ function ReservationForm({ cabin, user, guest }: ReservationFormProp) {
           <textarea
             name="observations"
             id="observations"
-            className="w-full rounded-sm bg-primary-200 px-5 py-8 text-primary-800 shadow-sm"
+            className="w-full rounded-sm bg-primary-200 px-5 py-7 text-primary-800 shadow-sm placeholder:text-primary-600"
             placeholder="Any pets, allergies, special requirements, etc.?"
           />
         </div>

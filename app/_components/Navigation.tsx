@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Bars3Icon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Session } from "next-auth";
 import Link from "next/link";
 // import { auth } from "../_lib/auth";
@@ -37,14 +32,6 @@ export default function Navigation({ session }: NavigationProps) {
               <Bars3Icon className="h-8 pb-1 text-white" />
             )}
           </button>
-          <Link href="/" className="text-2xl font-semibold text-primary-100">
-            <Image
-              src="/logo.png"
-              height="50"
-              width="50"
-              alt="The Wild Oasis logo"
-            />
-          </Link>
         </div>
         {/* <Logo /> */}
 
@@ -133,9 +120,19 @@ export default function Navigation({ session }: NavigationProps) {
         } overflow-hidden transition-all duration-300`}
       >
         <ul
-          className={`mb-6 ml-1 flex items-center gap-6 overflow-x-auto whitespace-nowrap text-xl`}
+          className={`mb-6 ml-1 flex items-center gap-8 overflow-x-auto whitespace-nowrap text-xl`}
         >
-          <li className="">
+          <li>
+            <Link
+              href="/"
+              className="block transition-colors hover:text-accent-400"
+              onClick={() => setIsOpen(false)} // Close menu when link clicked
+            >
+              Home
+            </Link>
+          </li>
+
+          <li>
             <Link
               href="/cabins"
               className="block transition-colors hover:text-accent-400"
@@ -145,9 +142,7 @@ export default function Navigation({ session }: NavigationProps) {
             </Link>
           </li>
 
-          {/* Square Divider */}
-
-          <li className="">
+          <li>
             <Link
               href="/about"
               className="block transition-colors hover:text-accent-400"
@@ -157,7 +152,7 @@ export default function Navigation({ session }: NavigationProps) {
             </Link>
           </li>
 
-          <li className="">
+          {/* <li>
             <Link
               href="/account"
               className="block transition-colors hover:text-accent-400"
@@ -165,7 +160,7 @@ export default function Navigation({ session }: NavigationProps) {
             >
               Guest area
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

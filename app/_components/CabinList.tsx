@@ -19,11 +19,21 @@ async function CabinList({ filter }: { filter: Filter }) {
   if (filter === "large")
     displayedCabins = cabins.filter((cabin) => cabin.maxCapacity > 8);
 
+  const cabinsLength = displayedCabins!.length || 0;
+
   return (
-    <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:gap-12 xl:gap-14">
-      {displayedCabins?.map((cabin) => (
-        <CabinCard cabin={cabin} key={cabin.id} />
-      ))}
+    <div
+      className={`grid grid-cols-1 gap-8 ${cabinsLength > 1 ? "md:grid-cols-2" : "md:grid-cols-1"} lg:gap-10`}
+    >
+      {cabinsLength === 0 ? (
+        <p className="col-span-full text-center text-lg text-primary-200">
+          No cabins available
+        </p>
+      ) : (
+        displayedCabins?.map((cabin) => (
+          <CabinCard cabin={cabin} key={cabin.id} />
+        ))
+      )}
     </div>
   );
 }

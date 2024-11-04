@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { type Filter } from "../types/cabinFilter";
 import { ReactNode } from "react";
 
-function Filter() {
+function CabinsFilter() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -22,11 +22,12 @@ function Filter() {
   }
 
   return (
-    <div className="flex border border-primary-800">
+    <div className="flex rounded-md border border-primary-800">
       <Button
         filter="all"
         handleFilter={handleFilter}
         activeFilter={activeFilter}
+        className="rounded-l-md"
       >
         All cabins
       </Button>
@@ -49,6 +50,7 @@ function Filter() {
         filter="large"
         handleFilter={handleFilter}
         activeFilter={activeFilter}
+        className="rounded-r-md"
       >
         8&mdash;12 guests
       </Button>
@@ -61,19 +63,28 @@ type ButtonProps = {
   handleFilter: (filter: Filter) => void;
   activeFilter: Filter;
   children: ReactNode;
+  className?: string;
 };
 
-function Button({ filter, handleFilter, activeFilter, children }: ButtonProps) {
+function Button({
+  filter,
+  handleFilter,
+  activeFilter,
+  children,
+  className,
+}: ButtonProps) {
   return (
     <button
       onClick={() => handleFilter(filter)}
-      className={`px-5 py-2 hover:bg-primary-700 ${
-        filter === activeFilter ? "bg-primary-700 text-primary-50" : ""
-      }`}
+      className={`px-5 py-2 hover:bg-primary-900 ${
+        filter === activeFilter
+          ? "bg-primary-800 text-primary-50 hover:!bg-primary-800"
+          : ""
+      } ${className}`}
     >
       {children}
     </button>
   );
 }
 
-export default Filter;
+export default CabinsFilter;

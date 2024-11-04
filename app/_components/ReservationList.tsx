@@ -42,31 +42,18 @@ function ReservationList({ bookings, filter }: ReservationListProps) {
   sortedBookings = sortedBookings!.slice().sort((a, b) => b.id - a.id); //desc order
 
   return (
-    <ul className="space-y-10 md:space-y-6 md:px-8">
-      {sortedBookings!.map((booking) => (
-        <ReservationCard
-          booking={booking}
-          key={booking.id}
-          onDelete={handleDelete}
-        />
-      ))}
-    </ul>
+    <div className="flex justify-center">
+      <ul className="max-h-[calc(100vh-20rem)] space-y-8 overflow-auto overflow-y-auto md:max-h-[calc(100vh-20rem)] md:space-y-6 md:px-0">
+        {sortedBookings!.map((booking) => (
+          <ReservationCard
+            booking={booking}
+            key={booking.id}
+            onDelete={handleDelete}
+          />
+        ))}
+      </ul>
+    </div>
   );
 }
 
 export default ReservationList;
-
-// let displayedCabins;
-// if (filter === "all") displayedCabins = cabins;
-// if (filter === "small")
-//   displayedCabins = cabins.filter((cabin) => cabin.maxCapacity <= 3);
-// if (filter === "medium")
-//   displayedCabins = cabins.filter(
-//     (cabin) => cabin.maxCapacity >= 4 && cabin.maxCapacity <= 7
-//   );
-// if (filter === "large")
-//   displayedCabins = cabins.filter((cabin) => cabin.maxCapacity > 8);
-
-// return (
-//   <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:gap-12 xl:gap-14">
-//     {displayedCabins?.map((cabin) => (

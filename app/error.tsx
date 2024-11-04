@@ -13,7 +13,7 @@ export default function Error({ error, reset }: ErrorProps) {
 
       <button
         onClick={reset}
-        className="inline-block bg-accent-500 px-6 py-3 text-lg text-primary-800"
+        className="inline-block rounded-lg bg-accent-500 px-6 py-3 text-lg text-primary-800 hover:bg-accent-600"
       >
         Try again
       </button>

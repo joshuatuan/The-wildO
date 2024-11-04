@@ -15,6 +15,8 @@ function TextExpander({ children, maxWords = 40 }: TextExpanderProps) {
     : children.split(" ").slice(0, maxWords).join(" ") +
       `${maxWords === 0 ? "" : "..."}`;
 
+  if (children.split(" ").length <= maxWords) return children;
+
   return (
     <span>
       {displayText}{" "}
