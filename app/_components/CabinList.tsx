@@ -17,13 +17,13 @@ async function CabinList({ filter }: { filter: Filter }) {
       (cabin) => cabin.maxCapacity >= 4 && cabin.maxCapacity <= 7
     );
   if (filter === "large")
-    displayedCabins = cabins.filter((cabin) => cabin.maxCapacity > 8);
+    displayedCabins = cabins.filter((cabin) => cabin.maxCapacity >= 8);
 
   const cabinsLength = displayedCabins!.length || 0;
 
   return (
     <div
-      className={`grid grid-cols-1 gap-8 ${cabinsLength > 1 ? "md:grid-cols-2" : "md:grid-cols-1"} lg:gap-10`}
+      className={`grid max-h-[calc(100vh-20rem)] grid-cols-1 justify-items-center gap-8 overflow-y-auto ${cabinsLength > 1 ? "md:grid-cols-2" : "md:grid-cols-1"} lg:gap-10`}
     >
       {cabinsLength === 0 ? (
         <p className="col-span-full text-center text-lg text-primary-200">

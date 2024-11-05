@@ -13,7 +13,7 @@ const ReservationContext = createContext<ReservationContextValue | undefined>(
   undefined
 );
 
-const initialState = { from: null, to: null };
+const initialState = { from: undefined, to: undefined };
 
 function ReservationProvider({ children }: { children: ReactNode }) {
   const [range, setRange] = useState<Range>(initialState);

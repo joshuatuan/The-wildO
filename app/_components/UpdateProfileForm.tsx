@@ -1,19 +1,14 @@
 import { updateGuest } from "../_lib/actions";
+import { Guest } from "../types/user";
 import SelectCountry from "./SelectCountry";
 import SubmitButton from "./SubmitButton";
 
 type UpdateProfileFormProps = {
-  guest: {
-    fullName: string;
-    email: string;
-    nationality: string;
-    nationalId: string;
-    countryFlag: string;
-  };
+  guest: Guest;
 };
 
 function UpdateProfileForm({ guest }: UpdateProfileFormProps) {
-  const { fullName, email, nationality, nationalId, countryFlag } = guest;
+  const { fullName, email, nationalId, countryFlag } = guest;
 
   return (
     <form
@@ -45,7 +40,6 @@ function UpdateProfileForm({ guest }: UpdateProfileFormProps) {
           {countryFlag && (
             <img
               src={countryFlag}
-              name="countryFlag"
               alt="Country flag"
               className="h-5 rounded-sm"
             />
@@ -62,7 +56,7 @@ function UpdateProfileForm({ guest }: UpdateProfileFormProps) {
       <div className="space-y-2">
         <label htmlFor="nationalID">National ID number</label>
         <input
-          defaultValue={nationalId}
+          defaultValue={nationalId ?? ""}
           name="nationalId"
           className="w-full rounded-sm bg-primary-200 px-5 py-2 text-primary-800 shadow-sm md:py-3"
         />

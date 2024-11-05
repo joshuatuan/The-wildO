@@ -5,8 +5,8 @@ import { CabinData } from "../types/action";
 
 function Cabin({ cabin }: { cabin: CabinData }) {
   const { name, maxCapacity, image, description } = cabin;
-  const lorem =
-    "ipsum dolor sit amet consectetur adipisicing elit. Culpa molestias pariatur architecto velit nihil sint aspernatur, quo nostrum eaque sit fuga dignissimos nulla! Adipisci non, perspiciatis officiis quod facilis doloribus.";
+  // const lorem =
+  //   "ipsum dolor sit amet consectetur adipisicing elit. Culpa molestias pariatur architecto velit nihil sint aspernatur, quo nostrum eaque sit fuga dignissimos nulla! Adipisci non, perspiciatis officiis quod facilis doloribus.";
 
   const maxDescWords = 15;
   return (
@@ -31,8 +31,8 @@ function Cabin({ cabin }: { cabin: CabinData }) {
           />
         </div>
         <div>
-          <h3 className="mb-5 rounded-3xl bg-primary-950 pb-1 text-5xl font-black text-accent-100 md:w-[120%] md:translate-x-[-254px] md:p-4 md:text-start md:text-7xl">
-            Cabin {name}
+          <h3 className="mb-5 rounded-3xl bg-primary-950 pb-1 text-4xl font-black text-accent-100 md:w-[120%] md:translate-x-[-254px] md:p-4 md:text-start md:text-4xl lg:text-5xl">
+            {name}
           </h3>
 
           <p className="mb-8 text-lg text-primary-300 md:mb-10">

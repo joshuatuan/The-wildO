@@ -1,6 +1,6 @@
 export type BookingData = {
-  startDate: Date | null;
-  endDate: Date | null;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
   numNights: number | undefined;
   cabinPrice: number | undefined;
   cabinId: number;

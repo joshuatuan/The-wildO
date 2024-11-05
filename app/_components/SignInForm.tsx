@@ -11,7 +11,8 @@ export default function SignInForm() {
   const handleSubmit = async (formData: FormData) => {
     setError(null);
     try {
-      await handleSignIn(formData);
+      const res = await handleSignIn(formData);
+      console.log("RESSSS: ", res);
     } catch (error: unknown) {
       setError((error as Error).message);
     }
@@ -46,7 +47,7 @@ export default function SignInForm() {
             Password:
           </label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             className="w-full rounded-sm bg-primary-200 px-4 py-2 text-primary-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-accent-500"

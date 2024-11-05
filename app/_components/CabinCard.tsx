@@ -7,7 +7,7 @@ function CabinCard({ cabin }: { cabin: CabinsData }) {
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
 
   return (
-    <div className="max-w-lg overflow-hidden rounded-lg border border-primary-800 bg-primary-950 transition-all duration-300 hover:shadow-lg hover:shadow-primary-900">
+    <div className="w-full overflow-hidden rounded-lg border border-primary-800 bg-primary-950 transition-all duration-300 hover:shadow-lg hover:shadow-primary-900 md:w-[330px] lg:w-[400px] xl:w-[500px]">
       <div className="relative h-48 md:h-56">
         <Image
           src={image}
@@ -18,9 +18,7 @@ function CabinCard({ cabin }: { cabin: CabinsData }) {
       </div>
 
       <div className="p-6">
-        <h3 className="mb-2 text-2xl font-semibold text-primary-100">
-          Cabin {name}
-        </h3>
+        <h3 className="mb-2 text-2xl font-semibold text-primary-100">{name}</h3>
 
         <div className="mb-4 flex items-center gap-2">
           <UsersIcon className="h-5 w-5 text-primary-600" />
@@ -56,7 +54,7 @@ function CabinCard({ cabin }: { cabin: CabinsData }) {
 
         <Link
           href={`/cabins/${id}`}
-          className="inline-block w-full rounded-xl bg-accent-600 px-4 py-2 text-center font-semibold text-primary-950 transition-colors hover:bg-accent-700"
+          className="inline-block w-full rounded-xl bg-accent-600 px-4 py-3 text-center font-semibold text-primary-950 transition-colors hover:bg-accent-700 md:py-2"
         >
           Details & Reservation
         </Link>

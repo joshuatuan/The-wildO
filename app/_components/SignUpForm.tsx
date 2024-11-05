@@ -31,7 +31,6 @@ export default function SignUpForm() {
       </div>
 
       <p>Or register here</p>
-      <p>{error}</p>
 
       <form className="flex w-full flex-col space-y-6 md:space-y-3">
         {/* Name Input */}
@@ -82,7 +81,7 @@ export default function SignUpForm() {
                 }
                 setPassword(e.target.value);
               }}
-              type="text"
+              type="password"
               name="password"
               id="password"
               className={`w-full rounded-sm bg-primary-200 px-4 py-2 text-primary-800 shadow-sm focus:outline-none focus:ring-2 ${!passwordReq && password ? "focus:ring-red-300" : "focus:ring-accent-500"}`}
@@ -103,7 +102,7 @@ export default function SignUpForm() {
             <div className="relative w-full">
               <input
                 onChange={(e) => setConfirmPw(e.target.value)}
-                type="text"
+                type="password"
                 name="pwConfirmation"
                 id="pwConfirmation"
                 className={`w-full rounded-sm bg-primary-200 px-4 py-2 text-primary-800 shadow-sm focus:outline-none focus:ring-2 ${!passwordMatch && confirmPw ? "focus:ring-red-300" : "focus:ring-accent-500"}`}
@@ -119,10 +118,12 @@ export default function SignUpForm() {
           </div>
         )}
 
+        {error && <p className="text-center text-red-300">{error}</p>}
+
         {/* Action Type & Submit */}
         <AuthButton
           onClick={handleSubmit}
-          className="!mt-10 rounded-md bg-accent-500 px-6 py-2 text-white hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 disabled:cursor-not-allowed"
+          className="!mt-6 rounded-md bg-accent-500 px-6 py-2 text-white hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 disabled:cursor-not-allowed"
         >
           Sign up
         </AuthButton>

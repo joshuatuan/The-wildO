@@ -17,7 +17,6 @@ async function Reservation({ cabin }: { cabin: Cabin }) {
 
   const session = await auth(); // Google auths have name and image in session. Credential auths does not
   const guest = await getGuest(session?.user?.email);
-
   return (
     <div className="grid rounded-md border border-primary-800 md:min-h-[425px] md:grid-cols-2">
       <DateSelector

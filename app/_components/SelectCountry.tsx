@@ -7,7 +7,7 @@ type Country = {
 };
 
 type SelectCountryProps = {
-  defaultCountry?: string;
+  defaultCountry?: string | null;
   name: string;
   id: string;
   className: string;

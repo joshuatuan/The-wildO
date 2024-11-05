@@ -5,9 +5,7 @@ import { Session } from "next-auth";
 import Link from "next/link";
 // import { auth } from "../_lib/auth";
 import { useState } from "react";
-import Logo from "./Logo";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 
 type NavigationProps = {
   session: Session | null;
@@ -65,7 +63,7 @@ export default function Navigation({ session }: NavigationProps) {
       </div>
 
       {/* FULL SIZE NAVBAR */}
-      <ul className="hidden items-center gap-16 md:flex">
+      <ul className="hidden items-center md:flex md:gap-6 lg:gap-16">
         <li>
           <Link
             href="/cabins"

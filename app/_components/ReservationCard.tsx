@@ -3,6 +3,7 @@ import { format, formatDistance, isPast, isToday, parseISO } from "date-fns";
 import DeleteReservation from "./DeleteReservation";
 import Image from "next/image";
 import Link from "next/link";
+import { Booking } from "../types/booking";
 
 export const formatDistanceFromNow = (dateStr: string) =>
   formatDistance(parseISO(dateStr), new Date(), {
@@ -10,23 +11,12 @@ export const formatDistanceFromNow = (dateStr: string) =>
   }).replace("about ", "");
 
 interface ReservationCardProps {
-  booking: {
-    id: number;
-    startDate: string;
-    endDate: string;
-    numNights: number;
-    totalPrice: number;
-    numGuests: number;
-    created_at: string;
-    cabins: {
-      name: string;
-      image: string;
-    };
-  };
+  booking: Booking;
   onDelete: (bookingId: number) => Promise<void>;
 }
 
 function ReservationCard({ booking, onDelete }: ReservationCardProps) {
+  console.log("BOOKINGS: ", booking);
   const {
     id,
     startDate,
@@ -44,12 +34,12 @@ function ReservationCard({ booking, onDelete }: ReservationCardProps) {
     : "text-accent-500 font-semibold";
 
   return (
-    <div className="flex max-w-lg flex-col overflow-hidden rounded-md bg-primary-900 shadow-lg transition-shadow hover:shadow-xl">
+    <div className="flex w-full flex-col overflow-hidden rounded-md bg-primary-900 shadow-lg transition-shadow hover:shadow-xl">
       {/* IMAGE */}
       <div className="relative h-40">
         <Image
           src={image}
-          alt={`Cabin ${name}`}
+          alt={`${name} cabin`}
           quality={10}
           fill
           className="rounded-lg rounded-b-none object-cover"
@@ -60,7 +50,7 @@ function ReservationCard({ booking, onDelete }: ReservationCardProps) {
       <div className="flex flex-col gap-4 p-6">
         <div className="flex items-center justify-between">
           <h3 className={`text-xl ${headerColor} md:text-2xl`}>
-            {numNights} nights in Cabin {name}
+            {numNights} nights in {name}
           </h3>
         </div>
 

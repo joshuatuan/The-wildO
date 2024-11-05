@@ -1,9 +1,10 @@
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
 import { notFound } from "next/navigation";
-import { Booking } from "../types/booking";
 import { CabinData, CabinsData } from "../types/action";
 import bcrypt from "bcryptjs";
+import { Booking } from "../types/booking";
+import { Guest } from "../types/user";
 
 export async function getCabin(id: number): Promise<CabinData> {
   const { data, error } = await supabase
@@ -49,19 +50,21 @@ export async function getCabinPrice(id: number) {
 }
 
 // Guests are uniquely identified by their email address
-export async function getGuest(email: string) {
+export async function getGuest(email: string): Promise<Guest> {
   const { data } = await supabase
     .from("guests")
-    .select("*")
+    .select(
+      "id, created_at, fullName, email, nationalId, nationality, countryFlag"
+    )
     .eq("email", email)
     .single();
 
-  // No error here! We handle the possibility of no guest in the sign in callback
-  return data;
+  // sign in callback handles the possibility of no guest
+  return data as Guest;
 }
 
 export async function getBooking(id: number) {
-  const { data, error, count } = await supabase
+  const { data, error } = await supabase
     .from("bookings")
     .select("*")
     .eq("id", id)
@@ -76,7 +79,7 @@ export async function getBooking(id: number) {
 }
 
 export async function getBookings(guestId: number): Promise<Booking[]> {
-  const { data, error, count } = await supabase
+  const { data, error } = await supabase
     .from("bookings")
     // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select(
@@ -89,7 +92,7 @@ export async function getBookings(guestId: number): Promise<Booking[]> {
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
-
+  // @ts-expect-error: i don't know why it's expecting an array of cabins at type Booking cabins:{}
   return data;
 }
 

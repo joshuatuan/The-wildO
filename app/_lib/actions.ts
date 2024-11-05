@@ -127,14 +127,16 @@ export async function updateBooking(formData: FormData) {
   redirect("/account/reservations");
 }
 
+// Google Oauth
 export async function signInAction() {
   await signIn("google", { redirectTo: "/account" });
 }
-
+// Google Oauth
 export async function signOutAction() {
   await signOut({ redirectTo: "/" });
 }
 
+// Credential auths::
 export async function handleSignIn(formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
@@ -144,10 +146,11 @@ export async function handleSignIn(formData: FormData) {
     password,
     redirectTo: "/account",
   });
+  console.log("RESSSS:: ", res);
   // await signIn("google", { redirectTo: "/account" });
 
-  if (!res || res.error) {
-    throw new Error(res.error); // This will contain "Invalid credentials" if auth fails
+  if (!res) {
+    throw new Error("Invalid credentials");
   }
 }
 
@@ -183,7 +186,7 @@ export async function handleSignUp(formData: FormData) {
   });
   // await signIn("google", { redirectTo: "/account" });
 
-  if (!res || res.error) {
-    throw new Error(res.error);
+  if (!res) {
+    throw new Error("An unknown error occurred while signing up."); // This will contain "Invalid credentials" if auth fails
   }
 }

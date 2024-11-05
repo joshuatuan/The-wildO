@@ -1,5 +1,4 @@
 import AuthForms from "../_components/AuthForms";
-import SelectCountry from "../_components/SelectCountry";
 
 export const metadata = {
   title: "Login",

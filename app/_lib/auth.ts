@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
-import { createGuest, getGuest, saltAndHashPassword } from "./data-service";
+import { createGuest, getGuest } from "./data-service";
 import Credentials from "next-auth/providers/credentials";
-import { signInSchema } from "./zod";
+import { supabase } from "./supabase";
 
 const authConfig: NextAuthConfig = {
   providers: [
@@ -18,10 +18,19 @@ const authConfig: NextAuthConfig = {
       },
       authorize: async (credentials) => {
         // Validate input
-        const { email, password } = credentials;
+        const { email, password } = credentials as {
+          email: string;
+          password: string;
+        };
 
         // Check if user exists in the database
-        const user = await getGuest(email);
+        // const user = await getGuest(email);
+
+        const { data: user } = await supabase
+          .from("guests")
+          .select("*")
+          .eq("email", email)
+          .single();
 
         if (!user) {
           // throw new Error("User not found.");
@@ -42,12 +51,12 @@ const authConfig: NextAuthConfig = {
   ],
 
   callbacks: {
-    authorized({ auth, request }) {
+    authorized({ auth }) {
       return !!auth?.user; // trick to convert it to boolean
       // if this returns true the middleware will grant access to the protected routes
     },
 
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       try {
         const existingGuest = await getGuest(user.email!);
         if (!existingGuest)
@@ -59,7 +68,7 @@ const authConfig: NextAuthConfig = {
       }
     },
 
-    async session({ session, user }) {
+    async session({ session }) {
       // will run after the signIn call back or every auth() calls ata
       const guest = await getGuest(session.user.email);
 

@@ -6,18 +6,20 @@ import {
   isSameDay,
   isWithinInterval,
 } from "date-fns";
-import { DayPicker } from "react-day-picker";
+import { type DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { useReservation } from "./ReservationContext";
 import { Cabin } from "../types/cabin";
 import { Settings } from "../types/settings";
 
-export type Range = {
-  from: Date | null;
-  to: Date | null;
-};
+// export type Range = {
+//   from: Date | undefined;
+//   to: Date | undefined;
+// };
 
-function isAlreadyBooked(range: Range, datesArr: Date[]) {
+export type Range = DateRange;
+
+function isAlreadyBooked(range: Range | undefined, datesArr: Date[]) {
   return (
     range?.from &&
     range?.to &&
@@ -37,12 +39,7 @@ function DateSelector({ cabin, settings, bookedDates }: DateSelectorProps) {
   const { range, setRange, resetRange } = useReservation();
 
   // prevents selecting a range of dates that contains an already booked date in between
-  const displayRange = isAlreadyBooked(range, bookedDates)
-    ? {
-        to: null,
-        from: null,
-      }
-    : range;
+  const displayRange = isAlreadyBooked(range, bookedDates) ? undefined : range;
 
   const { regularPrice, discount } = cabin;
 
@@ -65,7 +62,9 @@ function DateSelector({ cabin, settings, bookedDates }: DateSelectorProps) {
         className="place-self-center pt-5 text-lg md:scale-100 md:pt-10"
         mode="range"
         selected={displayRange}
-        onSelect={setRange}
+        onSelect={(selectedRange: DateRange | undefined) =>
+          setRange(selectedRange as Range)
+        }
         min={minBookingLength + 1}
         max={maxBookingLength}
         startMonth={new Date()}

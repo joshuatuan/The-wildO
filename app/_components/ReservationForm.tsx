@@ -5,14 +5,13 @@ import { useReservation } from "./ReservationContext";
 import { createBooking } from "../_lib/actions";
 import SubmitButton from "./SubmitButton";
 import { type Cabin } from "../types/cabin";
-import { type User } from "../types/user";
-import Image from "next/image";
-import { UserCircleIcon, UserIcon } from "@heroicons/react/24/solid";
+import { Guest, type User } from "../types/user";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 type ReservationFormProp = {
   cabin: Cabin;
   user: User;
-  // guest:
+  guest: Guest;
 };
 
 function ReservationForm({ cabin, user, guest }: ReservationFormProp) {
@@ -44,7 +43,7 @@ function ReservationForm({ cabin, user, guest }: ReservationFormProp) {
 
   return (
     <div className="grid">
-      <div className="flex items-center justify-between bg-primary-800 px-8 py-4 text-primary-300 md:rounded-r-md md:rounded-br-none md:px-16 md:py-2">
+      <div className="flex items-center justify-between bg-primary-800 px-8 py-4 text-primary-300 md:rounded-r-md md:rounded-br-none md:px-8 md:py-2 lg:px-14">
         <p>Logged in as</p>
         <div className="flex items-center gap-2">
           {user!.image ? (
@@ -70,7 +69,7 @@ function ReservationForm({ cabin, user, guest }: ReservationFormProp) {
           createBookingWithData(formData);
           resetRange();
         }}
-        className="flex flex-col gap-5 bg-primary-900 px-8 py-10 text-lg md:rounded-b-md md:px-16"
+        className="flex flex-col gap-5 bg-primary-900 px-8 py-10 text-lg md:rounded-b-md md:px-8 lg:px-16"
       >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
